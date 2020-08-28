@@ -4,7 +4,13 @@ public class SetModel {
     private int aGames;
     private int bGames;
 
-
+    @Override
+    public String toString() {
+        return "SetModel{" +
+                "aGames=" + aGames +
+                ", bGames=" + bGames +
+                '}';
+    }
 
     public int getaGames() {
         return aGames;

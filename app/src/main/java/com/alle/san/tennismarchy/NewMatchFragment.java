@@ -4,11 +4,16 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.alle.san.tennismarchy.models.SetModel;
+
+import java.util.ArrayList;
 
 import static com.alle.san.tennismarchy.utils.Globals.FIFTEEN;
 import static com.alle.san.tennismarchy.utils.Globals.FORTY;
@@ -17,6 +22,7 @@ import static com.alle.san.tennismarchy.utils.Globals.ZERO;
 
 
 public class NewMatchFragment extends Fragment {
+    private static final String TAG = "NewMatchFragment";
 
     TextView pOneName, pOneSet, pOneGame, pOneScore,
              pTwoName, pTwoSet, pTwoGame, pTwoScore;
@@ -25,6 +31,9 @@ public class NewMatchFragment extends Fragment {
 
     int  aSet = 0, aGame = 0, aScore = 0,
          bSet = 0, bGame = 0, bScore = 0;
+
+    ArrayList<SetModel> setsPlayed = new ArrayList<>();
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,7 +61,6 @@ public class NewMatchFragment extends Fragment {
         playerOnePoints();
         playerTwoPoints();
 
-
         return view;
     }
 
@@ -79,10 +87,16 @@ public class NewMatchFragment extends Fragment {
                         pTwoScore.setText(ZERO);
                         pOneScore.setText(ZERO);
                         if (aGame == 6){
+                            SetModel newSet = new SetModel(aGame, bGame);
+                            setsPlayed.add(newSet);
                             aSet++;
                             aGame = 0;
+                            bGame = 0;
+                            pTwoGame.setText(String.valueOf(bGame));
                             pOneGame.setText(String.valueOf(aGame));
                             pOneSet.setText(String.valueOf(aSet));
+
+                            Log.d(TAG, "onCreateView: sets played so far =>"+ setsPlayed.toString());
                         }
                         pOneGame.setText(String.valueOf(aGame));
                         break;
@@ -116,10 +130,15 @@ public class NewMatchFragment extends Fragment {
                         pOneScore.setText(ZERO);
                         pTwoScore.setText(ZERO);
                         if (bGame == 6){
+                            SetModel newSet = new SetModel(aGame, bGame);
+                            setsPlayed.add(newSet);
                             bSet++;
+                            aGame = 0;
                             bGame = 0;
                             pTwoGame.setText(String.valueOf(bGame));
+                            pOneGame.setText(String.valueOf(aGame));
                             pTwoSet.setText(String.valueOf(bSet));
+                            Log.d(TAG, "onCreateView: sets played so far =>"+ setsPlayed.toString());
                         }
                         pTwoGame.setText(String.valueOf(bGame));
                         break;
