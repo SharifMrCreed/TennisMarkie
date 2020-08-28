@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TennisMarchy</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="zero">0</string>
+    <string name="games">Games</string>
+    <string name="player_two_point">PLAYER 2 POINT</string>
+    <string name="player_one_point">PLAYER 1 POINT</string>
+    <string name="scores">Scores</string>
+    <string name="player_2">Player 2</string>
+    <string name="sets">Sets</string>
+    <string name="player_1">Player 1</string>
+</resources>
